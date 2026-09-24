@@ -2,7 +2,30 @@
 // Created by Sebastian Sobczyński on 21/09/2026.
 //
 
-#ifndef KVSTORE_KVSTORE_H
-#define KVSTORE_KVSTORE_H
+#pragma once //Instead of the whole def. using #ifdef etc.
 
-#endif //KVSTORE_KVSTORE_H
+#include <string>
+#include <optional>
+#include <unordered_map>
+#include <chrono>
+
+namespace kv {
+    using Clock = std::chrono::steady_clock;
+    using TimePoint = Clock::time_point;
+}
+
+struct Entry {
+    std::string value;
+    std::optional<TimePoint> expiry;
+
+    [[nodiscard]] bool is_expired(TimePoint now) const noexcept {
+        return expiry.has_value() && *expiry <= now;
+    }
+};
+
+class KVStore {
+public:
+    KVStore() = default;
+
+    void set(std::string key, std::string value);
+};

@@ -11,10 +11,14 @@ add_library(kvstore_core
         src/kvstore.cpp
         src/ttl_worker.cpp
         tests/kvstore_test.cpp
+        include/kvstore/kvstore.h
+        include/kvstore/ttl_worker.h
 )
 target_include_directories(kvstore_core PUBLIC include)
 
-add_executable(kvstore_server src/main.cpp)
+add_executable(kvstore_server src/main.cpp
+        include/kvstore/kvstore.h
+        include/kvstore/ttl_worker.h)
 target_link_libraries(kvstore_server PRIVATE kvstore_core)
 
 enable_testing()
