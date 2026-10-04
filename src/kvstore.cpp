@@ -32,5 +32,32 @@ namespace kv {
 
         std::unique_lock lock(mutex_);
         auto it = table_.find(key);
+        if (it != table_.end() && it->second.is_expired(now)) {
+            table_.erase(it);
+            return std::nullopt;
+        }
+        return (it != table_.end() ? std::optional(it->second.key) : std::nullopt);
+    }
+
+    bool KVStore::del(const std::string& key) {
+        std::unique_lock lock(mutex_);
+        return table_.erase(key);
+    }
+
+    size_t KVStore::purge_expired() {
+        auto now = Clock::now();
+        std::unique_lock lock(mutex_);
+        size_t count = 0;
+
+        for (auto it = table_.begin(); it != table_.end();) {
+            if (it->second.is_expired(now)) {
+                it = table_.erase(it);
+                ++count;
+            }
+            else {
+                ++it;
+            }
+        }
+        return count;
     }
 }
