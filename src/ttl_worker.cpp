@@ -4,5 +4,3 @@
 
 #include "kvstore/ttl_worker.h"
 
-namespace kv {
-}
