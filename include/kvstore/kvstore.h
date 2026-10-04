@@ -15,7 +15,7 @@ namespace kv {
     using TimePoint = Clock::time_point;
 
     struct Entry {
-        std::string key;
+        std::string value;
         std::optional<TimePoint> expiry;
 
         [[nodiscard]] bool is_expired(TimePoint now) const noexcept {

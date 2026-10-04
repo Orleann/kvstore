@@ -2,7 +2,32 @@
 // Created by Sebastian Sobczyński on 21/09/2026.
 //
 
-#ifndef KVSTORE_TTL_WORKER_H
-#define KVSTORE_TTL_WORKER_H
+#pragma once
 
-#endif //KVSTORE_TTL_WORKER_H
+#include "kvstore/kvstore.h"
+#include <thread>
+#include <chrono>
+
+namespace kv {
+    class TTLWorker {
+    public:
+        explicit TTLWorker(KVStore& store, std::chrono::milliseconds interval = std::chrono::milliseconds(1000))
+            : store_(store), interval_(interval) {
+            worker_ = std::jthread([this](std::stop_token stop_token) {
+                run(stop_token);
+            });
+        }
+    private:
+        void run(std::stop_token stop_token) {
+            while (!stop_token.stop_requested()) {
+                store_.purge_expired();
+                for (int i = 0; i < 10 && !stop_token.stop_requested(); ++i) {
+                    std::this_thread::sleep_for(interval_ / 10);
+                }
+            }
+        }
+        KVStore& store_;
+        std::chrono::milliseconds interval_;
+        std::jthread worker_;
+    };
+};

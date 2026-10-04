@@ -26,7 +26,7 @@ namespace kv {
                 return std::nullopt;
             }
             if (!it->second.is_expired(now)) {
-                return it->second.key;
+                return it->second.value;
             }
         }
 
@@ -36,7 +36,7 @@ namespace kv {
             table_.erase(it);
             return std::nullopt;
         }
-        return (it != table_.end() ? std::optional(it->second.key) : std::nullopt);
+        return (it != table_.end() ? std::optional(it->second.value) : std::nullopt);
     }
 
     bool KVStore::del(const std::string& key) {
