@@ -27,7 +27,6 @@ namespace kv {
     public:
         KVStore() = default;
 
-        void set(std::string key, std::string value);
         void set(std::string key, std::string value, std::optional<std::chrono::milliseconds> ttl = std::nullopt);
         [[nodiscard]] std::optional<std::string> get(const std::string& key);
         bool del(const std::string& key);
