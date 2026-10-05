@@ -1,7 +1,6 @@
 #include <chrono>
 #include <iostream>
 #include <optional>
-
 #include "kvstore/kvstore.h"
 #include "kvstore/ttl_worker.h"
 
@@ -63,6 +62,7 @@ int main() {
         result("token_s", store.get("token_s"));
     } //Background worker (running periodic purge_expired sweeps)
     {
+        std::cout << std::endl;
         kv::TTLWorker stress_worker(store, 50ms);
         constexpr int number_of_threads = 4;
         constexpr int operations_per_thread = 1000;

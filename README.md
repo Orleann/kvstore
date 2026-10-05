@@ -1,32 +1,17 @@
-[CMAKE]
+This project works as a demonstration of multithread key-value store. In a simplification it is a light, Redis-like structure.
 
-CXX means that this project is using specifically C++ language. By specifying that in the 'project()' it makes it so,
-that CMake only checks and configures C++ compiler, instead of trying to go through C compilers.
+When running the program, it uses the code written in kvstore (both .h and .cpp) and ttl_worker (both .h and .cpp).
 
-Setting the CMake standard means that to run this program, a specified version of CMake is required, in this case 4.20
-Setting the extensions to 'OFF' also means, that compiler-specific vendor extensions are disabled, and that the code
-will follow standard ISO-compliant C++.
+It shows, from top line to the bottom:
 
--Wall & -Wextra → turns on standard and extra compiler warnings.
--Wpedantic → enforces standard ISO-compliant C++.
--Wconversion → warns during specific data conversions, which might end in loss of said data.
+→basic key insertion (first three lines)
 
-Adding a library of 'kvstore_core' formed of 'src/kvstore.cpp' and 'src/ttl_worker.cpp' combines both files into one
-target library.
+→key deletion (fourth and fifth line)
 
-target_include_directories → tells the compiler where to find '/include' files. Making it public, means that 'kvstore_server'
-can inherit the access to these files.
+→temporary keys (sixth, seventh, and eight line)
 
-add_executable(a b) → tells CMake to run a binary executable 'a', starting from file 'b' (in this case executable
-'kvstore_server' and file 'src/main.cpp').
+→Next section presents timed keys, and purging.
 
-[HEADER FILES]
+→Last section shows the program working in the background on 8000 concurrent operations.
 
-Both of the header files are made with pragma preprocessor, to make sure that the compiler includes those files only once per process, and replaces the "#ifdef" macro patterns in both of them.
-
-std::optional → management of optional values that may or may not be represented. 
-
-std::unordered_map 
-→ associative container, containing key values.
-
-std::shared_mutex → implementation of reader-writer lock, allowing multiple thread readers of rarely modified data.
+[All code sections of each of those points can be easily found via comments]
