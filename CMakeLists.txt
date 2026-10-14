@@ -10,9 +10,10 @@ add_compile_options(-Wall -Wextra -Wpedantic -Wconversion)
 add_library(kvstore_core
         src/kvstore.cpp
         src/ttl_worker.cpp
-        tests/kvstore_test.cpp
         include/kvstore/kvstore.h
         include/kvstore/ttl_worker.h
+        bidings/main_python.cpp
+        src/benchmark_cli.cpp
 )
 target_include_directories(kvstore_core PUBLIC include)
 
@@ -23,3 +24,6 @@ target_link_libraries(kvstore_server PRIVATE kvstore_core)
 
 enable_testing()
 add_subdirectory(tests)
+
+add_executable(kvstore_bench src/benchmark_cli.cpp)
+target_link_libraries(kvstore_bench PRIVATE kvstore_core)
