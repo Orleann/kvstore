@@ -3,7 +3,10 @@
 //
 
 #include <iostream>
-#include "kvstore.cpp"
+#include <thread>
+#include <chrono>
+#include <vector>
+#include "kvstore/kvstore.h"
 
 int main(int argc, char **argv) {
     int num_threads = (argc > 1) ? std::stoi(argv[1]) : 4;
@@ -30,16 +33,27 @@ int main(int argc, char **argv) {
         });
     }
 
+    for (auto& th : threads) {
+        if (th.joinable()) {
+            th.join();
+        }
+    }
     threads.clear();
+
     auto end_time = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double, std::milli> time_duration = end_time - start_time;
 
-    long total_operations = static_cast<long>(num_threads) * operations;
-    double operations_per_second = ((total_operations) / time_duration.count()) * 1000;
+    long long total_operations = static_cast<long long>(num_threads) * operations;
 
-    std::cout << "Results:" << std::endl;
-    std::cout << "Number of threads: " << num_threads << std::endl;
-    std::cout << "Total number of operations: " << total_operations << std::endl;
-    std::cout << "Time: " << time_duration << " ms" << std::endl;
-    std::cout << "Operations per second: " << operations_per_second << std::endl;
+    double operations_per_second = 0.0;
+    if (time_duration.count() > 0.0) {
+        operations_per_second = (static_cast<double>(total_operations) / time_duration.count()) * 1000.0;
+    }
+
+    std::cout << "{\n"
+              << "  \"threads\": " << num_threads << ",\n"
+              << "  \"total_ops\": " << total_operations << ",\n"
+              << "  \"duration_ms\": " << time_duration.count() << ",\n"
+              << "  \"ops_per_sec\": " << operations_per_second << "\n"
+              << "}\n";
 }

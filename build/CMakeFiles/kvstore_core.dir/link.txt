@@ -1,0 +1,2 @@
+/usr/bin/ar qc libkvstore_core.a CMakeFiles/kvstore_core.dir/src/kvstore.cpp.o CMakeFiles/kvstore_core.dir/src/ttl_worker.cpp.o CMakeFiles/kvstore_core.dir/bidings/main_python.cpp.o CMakeFiles/kvstore_core.dir/src/benchmark_cli.cpp.o
+/usr/bin/ranlib libkvstore_core.a

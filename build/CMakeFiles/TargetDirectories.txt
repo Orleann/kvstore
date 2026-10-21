@@ -1,0 +1,9 @@
+/Users/sebastiansobczynski/CLionProjects/kvstore/build/CMakeFiles/kvstore_core.dir
+/Users/sebastiansobczynski/CLionProjects/kvstore/build/CMakeFiles/kvstore_server.dir
+/Users/sebastiansobczynski/CLionProjects/kvstore/build/CMakeFiles/kvstore_bench.dir
+/Users/sebastiansobczynski/CLionProjects/kvstore/build/CMakeFiles/test.dir
+/Users/sebastiansobczynski/CLionProjects/kvstore/build/CMakeFiles/edit_cache.dir
+/Users/sebastiansobczynski/CLionProjects/kvstore/build/CMakeFiles/rebuild_cache.dir
+/Users/sebastiansobczynski/CLionProjects/kvstore/build/tests/CMakeFiles/test.dir
+/Users/sebastiansobczynski/CLionProjects/kvstore/build/tests/CMakeFiles/edit_cache.dir
+/Users/sebastiansobczynski/CLionProjects/kvstore/build/tests/CMakeFiles/rebuild_cache.dir

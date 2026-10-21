@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/kvstore_bench.dir/src/benchmark_cli.cpp.o -o kvstore_bench  libkvstore_core.a

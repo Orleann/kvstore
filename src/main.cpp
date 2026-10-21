@@ -1,6 +1,7 @@
 #include <chrono>
 #include <iostream>
 #include <optional>
+#include <vector>
 #include "kvstore/kvstore.h"
 #include "kvstore/ttl_worker.h"
 
