@@ -1,6 +1,7 @@
 # Build directories (CMake)
 build/
 cmake-build-*/
+state/
 
 # IDEs and Editors
 .idea/
