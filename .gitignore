@@ -1,0 +1,29 @@
+# Build directories (CMake)
+build/
+cmake-build-*/
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Compiled C++ binaries and object files
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+*.exe
+*.out
+
+# Python (benchmark environment & cache)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
