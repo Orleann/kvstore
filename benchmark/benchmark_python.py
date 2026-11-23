@@ -43,7 +43,6 @@ def main():
 
     output_image = "result.png"
     plt.savefig(output_image)
-    plt.show()
     print(f"Result: {output_image}")
 
 if __name__ == "__main__":

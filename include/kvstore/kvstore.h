@@ -2,7 +2,7 @@
 // Created by Sebastian Sobczyński on 21/09/2026.
 //
 
-#pragma once //Instead of the whole def. using #ifdef etc.
+#pragma once
 
 #include <string>
 #include <optional>

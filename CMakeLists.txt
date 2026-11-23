@@ -9,7 +9,6 @@ add_compile_options(-Wall -Wextra -Wpedantic -Wconversion)
 
 add_library(kvstore_core
         src/kvstore.cpp
-        src/ttl_worker.cpp
         include/kvstore/kvstore.h
         include/kvstore/ttl_worker.h
         bidings/main_python.cpp
