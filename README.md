@@ -40,7 +40,7 @@ A high-performance, thread-safe, in-memory key value store built with modern C++
 
 *Prerequisites:*
 - C++20 compiler
-- CMake 3.2+
+- CMake 3.50+
 - Python 3.8+ (with `matplotlib` and `pandas`)
 
 *Build instructions:*

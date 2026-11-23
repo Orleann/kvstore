@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.5)
 project(kvstore CXX)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -11,7 +11,6 @@ add_library(kvstore_core
         src/kvstore.cpp
         include/kvstore/kvstore.h
         include/kvstore/ttl_worker.h
-        bidings/main_python.cpp
         src/benchmark_cli.cpp
 )
 target_include_directories(kvstore_core PUBLIC include)
